@@ -29,15 +29,22 @@ public class frmInterfaz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Confiabilidad = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtConfiabilidad = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         btnEjecutar = new javax.swing.JButton();
         lblZo = new javax.swing.JLabel();
-        lblResultadoBinario1 = new javax.swing.JLabel();
+        lblMensaje = new javax.swing.JLabel();
         lblMc = new javax.swing.JLabel();
         lblCo = new javax.swing.JLabel();
+        rb90 = new javax.swing.JRadioButton();
+        rb95 = new javax.swing.JRadioButton();
+        rb99 = new javax.swing.JRadioButton();
+        lblResultadoBinario1 = new javax.swing.JLabel();
+        lblResultado1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtNumeros = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -67,12 +74,11 @@ public class frmInterfaz extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 560, 70);
-        getContentPane().add(txtConfiabilidad);
-        txtConfiabilidad.setBounds(20, 110, 120, 20);
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Confiabilidad");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 90, 70, 14);
+        jLabel2.setBounds(20, 90, 90, 14);
 
         btnEjecutar.setBackground(new java.awt.Color(102, 255, 102));
         btnEjecutar.setText("Ejecutar");
@@ -82,34 +88,81 @@ public class frmInterfaz extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEjecutar);
-        btnEjecutar.setBounds(150, 110, 90, 20);
+        btnEjecutar.setBounds(260, 110, 90, 20);
 
         lblZo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblZo.setText("Zo");
         getContentPane().add(lblZo);
-        lblZo.setBounds(20, 240, 110, 20);
+        lblZo.setBounds(20, 340, 110, 20);
 
-        lblResultadoBinario1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblResultadoBinario1.setText("Numeros Binarios");
-        getContentPane().add(lblResultadoBinario1);
-        lblResultadoBinario1.setBounds(20, 150, 140, 20);
+        lblMensaje.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblMensaje.setText("Mensaje de aceptacion");
+        getContentPane().add(lblMensaje);
+        lblMensaje.setBounds(20, 400, 520, 20);
 
         lblMc.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblMc.setText("Mc");
         getContentPane().add(lblMc);
-        lblMc.setBounds(20, 180, 110, 20);
+        lblMc.setBounds(20, 280, 110, 20);
 
         lblCo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblCo.setText("Co");
         getContentPane().add(lblCo);
-        lblCo.setBounds(20, 210, 110, 20);
+        lblCo.setBounds(20, 310, 110, 20);
+
+        Confiabilidad.add(rb90);
+        rb90.setText("90%");
+        getContentPane().add(rb90);
+        rb90.setBounds(20, 110, 49, 23);
+
+        Confiabilidad.add(rb95);
+        rb95.setText("95%");
+        getContentPane().add(rb95);
+        rb95.setBounds(90, 110, 49, 23);
+
+        Confiabilidad.add(rb99);
+        rb99.setText("99%");
+        getContentPane().add(rb99);
+        rb99.setBounds(170, 110, 49, 23);
+
+        lblResultadoBinario1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblResultadoBinario1.setText("Numeros Binarios");
+        getContentPane().add(lblResultadoBinario1);
+        lblResultadoBinario1.setBounds(200, 150, 150, 20);
+
+        lblResultado1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblResultado1.setText("Numeros comparados");
+        getContentPane().add(lblResultado1);
+        lblResultado1.setBounds(20, 370, 520, 20);
+
+        txtNumeros.setEditable(false);
+        txtNumeros.setColumns(10);
+        txtNumeros.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtNumeros.setRows(5);
+        txtNumeros.setNextFocusableComponent(jScrollPane1);
+        jScrollPane1.setViewportView(txtNumeros);
+        txtNumeros.getAccessibleContext().setAccessibleParent(null);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(180, 180, 180, 110);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEjecutarActionPerformed
-       try{
-         Double conf = Double.parseDouble(this.txtConfiabilidad.getText().trim());
+      try{
+           Operaciones op = new Operaciones();
+         if(this.rb90.isSelected()){
+             op.resultadoFinal(1.65);
+         }
+         if(this.rb95.isSelected()){
+             op.resultadoFinal(1.96);
+         }
+         if(this.rb99.isSelected()){
+             op.resultadoFinal(2.58);
+         }
+         this.txtNumeros.setText("");
+        op.Imprimir();
        }catch(Exception e){
            JOptionPane.showMessageDialog(null, "No se Aceptan Esos datos", "Datos No validos", JOptionPane.WARNING_MESSAGE);
        }
@@ -151,14 +204,21 @@ public class frmInterfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup Confiabilidad;
     private javax.swing.JButton btnEjecutar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblCo;
-    private javax.swing.JLabel lblMc;
-    private javax.swing.JLabel lblResultadoBinario1;
-    private javax.swing.JLabel lblZo;
-    private javax.swing.JTextField txtConfiabilidad;
+    private javax.swing.JScrollPane jScrollPane1;
+    public static javax.swing.JLabel lblCo;
+    public static javax.swing.JLabel lblMc;
+    public static javax.swing.JLabel lblMensaje;
+    public static javax.swing.JLabel lblResultado1;
+    public static javax.swing.JLabel lblResultadoBinario1;
+    public static javax.swing.JLabel lblZo;
+    private javax.swing.JRadioButton rb90;
+    private javax.swing.JRadioButton rb95;
+    private javax.swing.JRadioButton rb99;
+    public static javax.swing.JTextArea txtNumeros;
     // End of variables declaration//GEN-END:variables
 }
