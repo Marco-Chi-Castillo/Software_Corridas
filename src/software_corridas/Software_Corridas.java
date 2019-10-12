@@ -2,7 +2,10 @@
 package software_corridas;
 
 /**
+<<<<<<< HEAD
  * *
+=======
+>>>>>>> 7003fc1a23e35e20d8e174958b1bfeae0561eacf
  * @author marco antonio chi castillo 
  * @author marcos abraham caamal tzuc
  */
@@ -14,6 +17,7 @@ import java.util.ArrayList;
 public class Software_Corridas {
 
     public static void main(String[] args) {
+<<<<<<< HEAD
         CargarArchivo prueba=new CargarArchivo();
         ArrayList <String> texto=new ArrayList();
         texto=prueba.leer_fichero();
@@ -21,6 +25,11 @@ public class Software_Corridas {
             System.out.println(texto.get(i));
         }
     
+=======
+        frmInterfaz frm = new frmInterfaz();
+        frm.setVisible(true);
+        frm.setSize(550, 350);
+>>>>>>> 7003fc1a23e35e20d8e174958b1bfeae0561eacf
     }
     
 }
